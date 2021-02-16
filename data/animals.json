@@ -180,6 +180,17 @@
         "hungry"
       ],
       "id": "18"
+    },
+    {
+      "name": "wut",
+      "species": "nomnom",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "anxious",
+        "loving",
+        "goofy"
+      ],
+      "id": "19"
     }
   ]
 }

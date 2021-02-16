@@ -11,7 +11,7 @@ const { animals } = require('./data/animals.json')
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
-
+app.use(express.static('public'));
 
 function filterByQUery(query, animalsArray) {
   let filteredResults = animalsArray;
@@ -82,6 +82,7 @@ function validateAnimal(animal) {
   return true;
 }
 
+// GET calls
 app.get('/api/animals/', (req, res) => {
   // res.send('Hello!');
   let results = animals;
@@ -102,6 +103,19 @@ app.get('/api/animals/:id', (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/animals', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// POST calls
 app.post('/api/animals', (req, res) => {
   // req.body is where our incoming content will be
   // console.log(req.body);
@@ -116,6 +130,8 @@ app.post('/api/animals', (req, res) => {
     res.json(animal);
   }
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
